@@ -1,0 +1,37 @@
+{
+  "name": "Aroosh Singh",
+  "roll_no": "25b2163",
+  "seed": 18131100226146823469,
+  "training_setup": {
+    "optimizer": "SGD",
+    "learning_rate_schedule": "CosineAnnealingLR",
+    "batch_size": 1024,
+    "epochs": 40,
+    "augmentation": "RandomCrop, RandomHorizontalFlip",
+    "gpu_used": "Nvidia RTX 5050"
+  },
+  "task1": {
+    "noise_rate": 40.208,
+    "val_acc_noisy_labels__clean_ref_model": 90.20,
+    "val_acc_noisy_labels__noisy_ce_model": 52.34
+  },
+  "task2": {
+    "memorization_start_epoch": 20,
+    "early_stop_epoch": 32,
+    "val_acc_noisy_labels_at_early_stop": 53.52
+  },
+  "task3": {
+    "method": "5 fold out-of-fold predictions"
+  },
+  "task4": {
+    "methods": [
+      {"name": "Label Smoothing", "file": "t4_label_smoothing.csv", "val_acc_noisy_labels": 50.84},
+      {"name": "Generalized Cross Entropy", "file": "t4_robust_loss.csv", "val_acc_noisy_labels": 55.28}
+    ],
+    "best_method": "Generalized Cross Entropy"
+  },
+  "task5": {
+    "val_acc_synthetic_labels__baseline": 43.40,
+    "val_acc_synthetic_labels__best_method": 50.48
+  }
+}

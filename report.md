@@ -1,0 +1,9 @@
+Q1 truck-automobile, cat-dog and deer-horse account for most of the noise.
+
+Q2 After epoch 20, the accuracy on validation set of both clean and noisy data almost flatlines. So, more training is not really generalizing to the held out dataset meaning the model is memorizing wrong labels. As seen in the training accuracy graphs, after epoch 20, the accuracy on clean labels fluctuates between ~68-77% while the accuracy on the wrong labels keeps on increasing steadily. This means that the model is memorizing the wrong noisy labels, which are not generalizing to the correct ones yielding no increase in accuracy on clean labels.
+
+Q3 I scored held-out images using out-of-fold predictions with 5 folds. The noise score -log P(noisy label | image) can cause confusion between 'the label is wrong' and 'the model finds this image hard'. The score is high whenever the out-of-fold model assigns low probability to the label which can happen in both of these two circumstances.
+
+Q4 The best performing task 4 method was using generalized cross entropy as the loss. The accuracy increased from ~53% in normal training to 55.28% using GCE. GCE helped because samples with a small probability get their gradient multiplied by a small number, down weighting them. Mislabelled samples then contribute little while the ones which the model agrees on keep driving learning.
+
+Q5 For synthetic noise, the accuracy in the baseline training was ~43% and in GCE was ~50%. So, the rankings did not change. However, the jump here was much larger than in human noise. Since random noise is unlearnable, the down weighting of GCE works very well. It breaks for human noise where there is a pattern. Also, humans mislabel on hard samples more as compared to random noise so, for hard labels the model gives low probabilities which is suppressed by GCE like noise, causing loss of useful gradients.
